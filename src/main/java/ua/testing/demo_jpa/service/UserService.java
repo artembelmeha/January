@@ -40,6 +40,18 @@ public class UserService {
         }
 
     }
+    public boolean checkIfUserExist(String email) {
+        return userRepository.findByEmail(email) !=null ? true : false;
+    }
+
+    public void register(User user) {
+
+        //Let's check if user already registered with us
+        if(checkIfUserExist(user.getEmail())){
+            throw new IllegalArgumentException("User already exists for this email");
+        }
+
+    }
 
 
 }
