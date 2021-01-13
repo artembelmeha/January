@@ -2,35 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/sketchy/bootstrap.min.css"
+          integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
     <title>User</title>
 </head>
 <body>
 <div th:replace="header"></div>
-<div class="col-md-offset-2 col-sm-8">
-    <h2>Current user</h2>
+<div class="col-md-offset-4 col-sm-10">
+    <h2 th:text="#{currentUser}"/>
     <br>
     <table class="table">
         <thead>
         <tr>
-            <td>First name:</td>
+            <td th:text="#{firstName}">:</td>
             <td>
                 <b th:text="${user.firstName}"></b>
             </td>
         </tr>
         <tr>
-            <td>Last name:</td>
+            <td th:text="#{lastName}">:</td>
             <td>
                 <b th:text="${user.lastName}"></b>
             </td>
         </tr>
         <tr>
-            <td>E-mail:</td>
+            <td th:text="#{email}">:</td>
             <td>
                 <b th:text="${user.email}"></b>
             </td>
         </tr>
         <tr>
-            <td>Role:</td>
+            <td th:text="#{role}">:</td>
             <td>
                 <b th:text="${user.role}"></b>
             </td>
