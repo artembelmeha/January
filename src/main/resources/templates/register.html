@@ -2,54 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create New User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/sketchy/bootstrap.min.css"
+          integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
+    <title th:text="#{createNewUser}"></title>
 </head>
 <body>
 <div th:replace="header"></div>
-<h2>Create New User</h2>
-<form th:method="POST" th:action="@{/register}" th:object="${user}" >
-    <table >
-        <tr>
-            <td>
-                <label> First name:</label>
-            </td>
-            <td>
-                <input type="text" th:field="*{firstName}">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label> Last name:</label>
-            </td>
-            <td>
-                <input type="text" th:field="*{lastName}">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label> E-mail:</label>
-            </td>
-            <td>
-                <input type="text" th:field="*{email}">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label> Password:</label>
-            </td>
-            <td>
-                <input type="password" th:field="*{password}">
-            </td>
-        </tr>
-        <tr>
-            <td>
-            </td>
-            <td>
-                <input type="submit" value="Register">
-                <input type="reset" value="Clear">
-            </td>
-        </tr>
-    </table>
-</form>
+<div class="col-md-offset-4 col-sm-10">
+    <h2 th:text="#{createNewUser}"/>
+    <form th:method="POST" th:action="@{/register}" th:object="${user}">
+        <table>
+            <tr>
+                <td>
+                    <label th:text="#{firstName}">:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{firstName}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label th:text="#{lastName}"/>
+                </td>
+                <td>
+                    <input type="text" th:field="*{lastName}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label th:text="#{email}">:</label>
+                </td>
+                <td>
+                    <input type="text" th:field="*{email}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label th:text="#{password}">:</label>
+                </td>
+                <td>
+                    <input type="password" th:field="*{password}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" th:value="#{register}">
+                    <input type="reset" th:value="#{clear}">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>
