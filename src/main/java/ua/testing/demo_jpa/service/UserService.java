@@ -8,6 +8,7 @@ import ua.testing.demo_jpa.dto.UsersDTO;
 import ua.testing.demo_jpa.entity.User;
 import ua.testing.demo_jpa.repository.UserRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Slf4j
@@ -25,6 +26,7 @@ public class UserService {
         return new UsersDTO(userRepository.findAll());
     }
 
+
     public Optional<User> findByUserLogin (UserDTO userDTO){
         //TODO check for user availability. password check
         return userRepository.findByEmail(userDTO.getEmail());
@@ -38,20 +40,16 @@ public class UserService {
         } catch (Exception ex){
             log.info("{Почтовый адрес уже существует}");
         }
-
     }
-    public boolean checkIfUserExist(String email) {
-        return userRepository.findByEmail(email) !=null ? true : false;
-    }
-
-    public void register(User user) {
-
-        //Let's check if user already registered with us
-        if(checkIfUserExist(user.getEmail())){
-            throw new IllegalArgumentException("User already exists for this email");
+    public User readById (long id){
+        Optional<User> optional = userRepository.findById(id);
+        if (optional.isPresent()) {
+            return optional.get();
         }
-
+        throw new EntityNotFoundException("User with id " + id + " not found");
     }
+
+
 
 
 }

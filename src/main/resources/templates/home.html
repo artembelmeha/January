@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}" th:lang="${lang}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{loginForm}"/>
+</head>
+<body>
+<div th:replace="header"></div>
+<h2 th:text="#{loginForm}"/>
+<form th:method="POST" th:action="@{/login}" th:object="${userDTO}" >
+    <table >
+        <tr>
+            <td>
+                <label th:text="#{email}"> </label>
+            </td>
+            <td>
+                <input type="text" th:field="*{email}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label th:text="#{password}"> </label>
+            </td>
+            <td>
+                <input type="password" th:field="*{password}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" th:value="#{login}">
+                <input type="reset" th:value="#{clear}">
+            </td>
+        </tr>
+
+    </table>
+    <tr>
+        <a th:href="@{'/create'}" th:text="#{createNewUser}">
+    </tr>
+</form>
+</body>
+</html>

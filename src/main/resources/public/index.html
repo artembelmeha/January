@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login form's Main</title>
@@ -39,6 +39,9 @@
                     Submit
                 </button>
             </form>
+            <div>
+            <a th:href="@{/create}">Create new User</a>
+            </div>
         </div>
     </div>
 </div>
