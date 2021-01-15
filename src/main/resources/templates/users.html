@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       th:with="lang=${#locale.language}" th:lang="${lang}">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/sketchy/bootstrap.min.css"
+          integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
+
+    <title>User</title>
+
+</head>
+<body>
+<div th:replace="header"></div>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <td th:text="#{firstName}">:</td>
+            <td>
+                <b th:text="${user.firstName}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{lastName}">:</td>
+            <td>
+                <b th:text="${user.lastName}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{email}">:</td>
+            <td>
+                <b th:text="${user.email}"></b>
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{role}">:</td>
+            <td>
+                <b th:text="${user.role}"></b>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+    </table>
+</body>
+</html>

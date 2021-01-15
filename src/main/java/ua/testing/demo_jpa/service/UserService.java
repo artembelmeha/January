@@ -2,6 +2,11 @@ package ua.testing.demo_jpa.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ua.testing.demo_jpa.dto.UserDTO;
 import ua.testing.demo_jpa.dto.UsersDTO;
@@ -9,11 +14,13 @@ import ua.testing.demo_jpa.entity.User;
 import ua.testing.demo_jpa.repository.UserRepository;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 @Service
-public class UserService {
+@Component
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Autowired
@@ -21,9 +28,9 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UsersDTO getAllUsers() {
+    public List<User> getAllUsers() {
         //TODO checking for an empty user list
-        return new UsersDTO(userRepository.findAll());
+        return userRepository.findAll();
     }
 
 
@@ -50,6 +57,10 @@ public class UserService {
     }
 
 
+    @Override
+    public UserDetails loadUserByUsername(@NonNull String email) {
+        return userRepository.findByEmail(email).orElseThrow(() ->
+                new NullPointerException("user with email " + email + " was not found!"));
 
-
+    }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html  xmlns:th="http://www.thymeleaf.org"
+       th:with="lang=${#locale.language}" th:lang="${lang}">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/sketchy/bootstrap.min.css"
@@ -9,37 +10,37 @@
 <body>
 <div th:replace="header"></div>
 <div class="col-md-offset-4 col-sm-10">
-    <h2 th:text="#{currentUser}"/>
-    <br>
-    <table class="table">
-        <thead>
-        <tr>
-            <td th:text="#{firstName}">:</td>
-            <td>
-                <b th:text="${user.firstName}"></b>
-            </td>
-        </tr>
-        <tr>
-            <td th:text="#{lastName}">:</td>
-            <td>
-                <b th:text="${user.lastName}"></b>
-            </td>
-        </tr>
-        <tr>
-            <td th:text="#{email}">:</td>
-            <td>
-                <b th:text="${user.email}"></b>
-            </td>
-        </tr>
-        <tr>
-            <td th:text="#{role}">:</td>
-            <td>
-                <b th:text="${user.role}"></b>
-            </td>
-        </tr>
-        </thead>
-        <tbody>
-    </table>
+    <h2>List of Users</h2>
+
+<!--    <div th:each="person : ${people}">-->
+<!--        <a th:href="@{/users/{id}(id=${person.id})}" th:text="${person.firstName + ', ' +-->
+<!--        person.email+', ' + person.role}">user</a>-->
+
+        <br>
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Full name</th>
+                <th>E-mail</th>
+                <th>Role</th>
+                <th colspan="2">Operations</th>
+            </tr>
+            <tr th:each="user, iStat: ${people}">
+                <td th:text="${iStat.index + 1}" />
+                <td>
+                    <a th:href="@{|/users/${user.id}|}" th:text="${user.firstName + ' ' + user.lastName}" />
+                </td>
+                <td th:text="${user.email}"/>
+                <td th:text="${user.role}"/>
+                    <td>
+                    <a th:href="@{|/users/${user.id}/update|}">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{|/users/${user.id}/delete|}">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 </body>
 </html>

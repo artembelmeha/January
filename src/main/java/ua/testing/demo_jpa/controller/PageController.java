@@ -44,6 +44,4 @@ public class PageController {
         return "users/index.html";
     }
 
-
-
 }
